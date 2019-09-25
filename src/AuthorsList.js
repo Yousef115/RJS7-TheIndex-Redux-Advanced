@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 // Components
 import AuthorCard from "./AuthorCard";
@@ -20,6 +21,7 @@ class AuthorsList extends Component {
   };
 
   render() {
+    console.log(this.props.authors);
     const authorCards = this.state.filteredAuthors.map(author => (
       <AuthorCard key={author.id} author={author} />
     ));
@@ -34,4 +36,10 @@ class AuthorsList extends Component {
   }
 }
 
-export default AuthorsList;
+const mapStateToProps = state => {
+  return {
+    authors: state.authors
+  };
+};
+
+export default connect(mapStateToProps)(AuthorsList);
